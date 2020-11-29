@@ -38,14 +38,11 @@ public class GraphicsDisplay extends JPanel {
         setBackground(Color.WHITE);
 // Сконструировать необходимые объекты, используемые в рисовании
 // Перо для рисования графика
-        graphicsStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_ROUND, 10.0f, null, 0.0f);
+        graphicsStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 10.0f, null, 0.0f);
 // Перо для рисования осей координат
-        axisStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
+        axisStroke = new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
 // Перо для рисования контуров маркеров
-        markerStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
+        markerStroke = new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, null, 0.0f);
 // Шрифт для подписей осей координат
         axisFont = new Font("Serif", Font.BOLD, 36);
     }
@@ -165,8 +162,7 @@ minY
         GeneralPath graphics = new GeneralPath();
         for (int i = 0; i < graphicsData.length; i++) {
 // Преобразовать значения (x,y) в точку на экране point
-            Point2D.Double point = xyToPoint(graphicsData[i][0],
-                    graphicsData[i][1]);
+            Point2D.Double point = xyToPoint(graphicsData[i][0], graphicsData[i][1]);
             if (i > 0) {
 // Не первая итерация цикла - вести линию в точку point
                 graphics.lineTo(point.getX(), point.getY());
@@ -191,17 +187,16 @@ minY
         for (Double[] point : graphicsData) {
 // Инициализировать эллипс как объект для представления маркера
             Ellipse2D.Double marker = new Ellipse2D.Double();
-/* Эллипс будет задаваться посредством указания координат
-его центра
-и угла прямоугольника, в который он вписан */
+/* Эллипс будет задаваться посредством указания координат его центраи угла прямоугольника, в который он вписан */
 // Центр - в точке (x,y)
-            Point2D.Double center = xyToPoint(point[0], point[1]);
+           Point2D.Double center = xyToPoint(point[0], point[1]);
 // Угол прямоугольника - отстоит на расстоянии (3,3)
-            Point2D.Double corner = shiftPoint(center, 3, 3);
+           Point2D.Double corner = shiftPoint(center, 3, 3);
 // Задать эллипс по центру и диагонали
-            marker.setFrameFromCenter(center, corner);
-            canvas.draw(marker); // Начертить контур маркера
+           marker.setFrameFromCenter(center, corner);
+           canvas.draw(marker); // Начертить контур маркера
             canvas.fill(marker); // Залить внутреннюю область маркера
+
         }
     }
 
