@@ -151,7 +151,7 @@ public class GraphicsDisplay extends JPanel {
             double x1 = graphicsData[i][1];
             x1 = Math.sqrt(x1);
             int whole = (int)x1;
-            if ((x1 - whole) == 0){
+            if ( whole%2 == 0){
 
                 // Выбрать красный цвет для закрашивания маркеров внутри
                 canvas.setPaint(Color.RED);
@@ -163,12 +163,12 @@ public class GraphicsDisplay extends JPanel {
                 canvas.fill(marker);
             } else {GeneralPath path = new GeneralPath();
                 Point2D.Double center = xyToPoint(graphicsData[i][0], graphicsData[i][1]);
-                path.moveTo(center.x , center.y -5);
-                path.lineTo(center.x - 4, center.y +2.5);
-                path.lineTo(center.x +4, center.y+2.5);
+                path.moveTo(center.x , center.y +5);
+                path.lineTo(center.x + 4, center.y -2.5);
+                path.lineTo(center.x -4, center.y-2.5);
                 path.closePath();
                 canvas.draw(path);
-canvas.fill(path);
+                canvas.fill(path);
             }
         }
     }
