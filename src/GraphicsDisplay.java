@@ -35,8 +35,7 @@ public class GraphicsDisplay extends JPanel {
         // Шрифт для подписей осей координат
         axisFont = new Font("Serif", Font.BOLD, 35);
     }
-    // Данный метод вызывается из обработчика элемента меню "Открыть файл с графиком"
-    // главного окна приложения в случае успешной загрузки данных
+    // Данный метод вызывается из обработчика элемента меню "Открыть файл с графиком" главного окна приложения в случае успешной загрузки данных
     public void showGraphics(Double[][] graphicsData){
         // Сохранить массив точек во внутреннем поле класса
         this.graphicsData = graphicsData;
@@ -152,8 +151,6 @@ public class GraphicsDisplay extends JPanel {
             x1 = Math.sqrt(x1);
             int whole = (int)x1;
             if ( whole%2 == 0){
-
-                // Выбрать красный цвет для закрашивания маркеров внутри
                 canvas.setPaint(Color.RED);
                 Ellipse2D.Double marker = new Ellipse2D.Double();
                 Point2D.Double center = xyToPoint(graphicsData[i][0], graphicsData[i][1]);
@@ -210,11 +207,11 @@ public class GraphicsDisplay extends JPanel {
         }
         if(minY <= 0.0 && maxY >= 0.0){
 
-            canvas.draw(new Line2D.Double(xyToPoint(minX, 0), xyToPoint(maxX, 0)));
+            canvas.draw(new Line2D.Double(xyToPoint(minX, 2), xyToPoint(maxX, 2)));
 
             GeneralPath arrow = new GeneralPath();
-
-            Point2D.Double lineEnd = xyToPoint(maxX, 0);
+            //cтрелка
+            Point2D.Double lineEnd = xyToPoint(maxX, 2);
             arrow.moveTo(lineEnd.getX(), lineEnd.getY());
 
             arrow.lineTo(arrow.getCurrentPoint().getX() - 20, arrow.getCurrentPoint().getY() -5);
@@ -228,7 +225,7 @@ public class GraphicsDisplay extends JPanel {
             Rectangle2D bounds = axisFont.getStringBounds("x", context);
             Point2D.Double labelPos = xyToPoint(maxX, 0);
 
-            canvas.drawString("x", (float)labelPos.getX() - 10, (float)(labelPos.getY() + bounds.getY()));
+            canvas.drawString("x", (float)labelPos.getX() -20, (float)(labelPos.getY() + bounds.getY()));
         }
     }
     /* Метод-помощник, осуществляющий преобразование координат.
